@@ -9,19 +9,48 @@ def Feld(x):
         print("")
 
 def zeichen_setzen(spieler, zeichen):
+    bool = False
+
     for i in range(3):
         for j in range(3):
             if board[i][j] == spieler_input:
                 board[i][j] = zeichen
-                
+                return True
+
     if bool == False:
-    print("")
-    print("DEINE ZAHL MUSS ZWISCHEN 1-9 LIEGEN !!!")
+        print("")
+        print("DU MUSST EINE GANZZAHL ZWISCHEN 1-9 EINGEBEN !!!")
+
+def won(player):
+    global count
+
+    for i in range(3):
+        if board[0][i] == player and board[1][i] == player and board[2][i] == player:
+            print(f"{player} won!")
+            count = 9
+            return True
+
+        if set(board[i]) == {player}:
+            print(f"{player} won!")
+            count = 9
+            return True
+
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        print(f"{player} won!")
+        count = 9
+        return True
+
+    if board[0][2] == player and board[1][1] == player and board[2][0] == player:
+        print(f"{player} won!")
+        count = 9
+        return True 
 
 
 while count != 9:
     Feld(board)
     print("")
+    if won("O"):
+        break
 
     spieler_input = int(input("X ist am Zug. Auf welche Zahl möchtest du dein Zeichen setzen? "))
     zeichen_setzen(spieler_input, "X")
@@ -29,6 +58,8 @@ while count != 9:
 
     Feld(board)
     print("")
+    if won("X"):
+        break
 
     if count == 9:
         break
@@ -36,3 +67,5 @@ while count != 9:
     spieler_input = int(input("O ist am Zug. Auf welche Zahl möchtest du dein Zeichen setzen? "))
     zeichen_setzen(spieler_input, "O")
     count += 1
+
+
