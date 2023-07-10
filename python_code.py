@@ -13,6 +13,10 @@ def zeichen_setzen(spieler, zeichen):
         for j in range(3):
             if board[i][j] == spieler_input:
                 board[i][j] = zeichen
+                
+    if bool == False:
+    print("")
+    print("DEINE ZAHL MUSS ZWISCHEN 1-9 LIEGEN !!!")
 
 
 while count != 9:
